@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Traffic Control</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="highlight">SMART</span> TRAFFIC CONTROL</h1>
+            <div class="status-indicator">
+                <span class="dot"></span> SYSTEM ONLINE
+            </div>
+        </header>
+
+        <main>
+            <div class="video-section">
+                <div class="video-container">
+                    <img src="{{ url_for('video_feed') }}" alt="Live Traffic Feed">
+                    <div class="overlay-scan"></div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Stats Cards -->
+                <div class="card stat-card">
+                    <h3>Total Vehicles</h3>
+                    <p id="total-vehicles" class="stat-value">0</p>
+                </div>
+                <div class="card stat-card">
+                    <h3>Current Green</h3>
+                    <p id="current-green" class="stat-value">Lane 0</p>
+                </div>
+                <div class="card stat-card">
+                    <h3>Timer</h3>
+                    <p id="timer" class="stat-value">0</p>
+                </div>
+                <div class="card stat-card">
+                    <h3>Mode</h3>
+                    <p id="mode-display" class="stat-value">AUTO</p>
+                </div>
+
+                <!-- Controls -->
+                <div class="card control-panel">
+                    <h3>System Controls</h3>
+                    <div class="button-group">
+                        <button onclick="setMode('AUTO')" class="btn btn-primary">AUTO MODE</button>
+                        <button onclick="setMode('MANUAL')" class="btn btn-secondary">MANUAL MODE</button>
+                        <button onclick="setMode('STOP')" class="btn btn-danger">EMERGENCY STOP</button>
+                    </div>
+                </div>
+
+                <div class="card manual-panel">
+                    <h3>Manual Override</h3>
+                    <div class="button-group">
+                        <button onclick="switchLane(0)" class="btn btn-outline">Lane 0 (N)</button>
+                        <button onclick="switchLane(1)" class="btn btn-outline">Lane 1 (S)</button>
+                        <button onclick="switchLane(2)" class="btn btn-outline">Lane 2 (E)</button>
+                        <button onclick="switchLane(3)" class="btn btn-outline">Lane 3 (W)</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>

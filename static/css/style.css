@@ -1,0 +1,348 @@
+/* Global Reset & Typography */
+:root {
+    --bg-dark: #050a14;
+    /* Deep dark blue/black background */
+    --card-bg: rgba(20, 30, 50, 0.8);
+    /* Darker card bg */
+    --primary-accent: #00f0ff;
+    /* Neon Cyan */
+    --secondary-accent: #9d00ff;
+    /* Neon Purple */
+    --success: #00ff9d;
+    /* Neon Green */
+    --danger: #ff0055;
+    /* Neon Red */
+    --text-primary: #ffffff;
+    --text-secondary: #8b9bb4;
+    --glass-border: 1px solid rgba(0, 240, 255, 0.2);
+    /* Cyan tint border */
+    --font-heading: 'Orbitron', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+    /* SCALING FACTOR: Increase base size for "Zoomed" look */
+    font-size: 20px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-heading);
+    /* Default to tech font */
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-y: auto;
+    /* subtle hex pattern or gradient */
+    background-image:
+        radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.1) 0%, transparent 50%);
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+h1 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #00f0ff;
+    /* Cyan Header */
+    text-transform: uppercase;
+}
+
+.highlight {
+    color: #ffffff;
+    /* White emphasis */
+    text-shadow: none;
+}
+
+.status-indicator {
+    font-family: var(--font-body);
+    color: var(--success);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: none;
+    padding: 0;
+    background: transparent;
+    text-transform: uppercase;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: var(--success);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--success);
+}
+
+/* Main Layout: VERTICAL STACK */
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Video Section */
+.video-section {
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+    border: 1px solid var(--primary-accent);
+    /* Distinct Cyan Border */
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    max-height: 65vh;
+    margin: 0 auto;
+}
+
+.video-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.video-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.overlay-scan {
+    display: none;
+    /* Remove scanline for cleaner look matching image */
+}
+
+/* Dashboard Grid - Below Video */
+.dashboard-grid {
+    display: grid;
+    /* 4 Columns for Stats */
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    /* Stats Row, Controls Row */
+    gap: 1.5rem;
+    width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        /* Single column on mobile */
+    }
+}
+
+/* Cards */
+.card {
+    background: #111824;
+    /* Dark flat bg */
+    border: 1px solid #2d3748;
+    /* Subtle border */
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.card:hover {
+    border-color: var(--primary-accent);
+}
+
+.stat-card h3 {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    /* Large digital numbers */
+    color: var(--primary-accent);
+    /* Cyan Numbers */
+    font-weight: 500;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+/* Control Panels */
+.control-panel,
+.manual-panel {
+    grid-column: span 2;
+    align-items: flex-start;
+    /* Left align content for panels */
+    text-align: left;
+}
+
+/* Make manual panel full width on small screens if needed */
+@media (max-width: 1024px) {
+
+    .control-panel,
+    .manual-panel {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .control-panel,
+    .manual-panel {
+        grid-column: span 1;
+    }
+}
+
+.control-panel h3,
+.manual-panel h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    align-self: flex-start;
+}
+
+.button-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    width: 100%;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.8rem 1rem;
+    border: none;
+    border-radius: 4px;
+    /* Sharper corners */
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Auto Mode - Cyan */
+.btn-primary {
+    background: var(--primary-accent);
+    color: #000;
+    /* Black text on cyan */
+    box-shadow: none;
+}
+
+.btn-primary:hover {
+    background: #5ffaff;
+    box-shadow: 0 0 15px var(--primary-accent);
+}
+
+/* Manual Mode - Purple */
+.btn-secondary {
+    background: var(--secondary-accent);
+    color: #fff;
+    border: none;
+    /* Make purely solid */
+}
+
+.btn-secondary:hover {
+    background: #b04aff;
+    box-shadow: 0 0 15px var(--secondary-accent);
+}
+
+/* Emergency Stop - Red */
+.btn-danger {
+    background: var(--danger);
+    color: #fff;
+    border: none;
+}
+
+.btn-danger:hover {
+    background: #ff3377;
+    box-shadow: 0 0 15px var(--danger);
+}
+
+/* Outline Buttons for Manual Control - Cyan Border */
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--primary-accent);
+    color: var(--primary-accent);
+}
+
+.btn-outline:hover {
+    background: rgba(0, 240, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+    color: #fff;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #444;
+}
+
+/* Hide animations to match static looking UI */
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
